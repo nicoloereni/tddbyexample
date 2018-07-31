@@ -9,10 +9,6 @@ class Dollar
     Dollar.new(@amount * times)
   end
 
-  def amount
-    @amount
-  end
-
   def equals dollar
     dollar.amount == @amount
   end
