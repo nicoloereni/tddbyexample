@@ -13,4 +13,9 @@ class Dollar
     dollar.amount == @amount
   end
 
+  protected
+  def amount
+    @amount
+  end
+
 end
