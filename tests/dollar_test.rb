@@ -11,11 +11,9 @@ class DollarTest < Test::Unit::TestCase
   # HashCode
   def test_multiplication
     five = Dollar.new(5)
-    product  = five.times(2)
-    assert_equal(10, product.amount)
 
-    product = five.times(3)
-    assert_equal(15, product.amount)
+    assert_true(Dollar.new(10).equals(five.times(2)))
+    assert_true(Dollar.new(15).equals(five.times(3)))
   end
 
   def test_equality
