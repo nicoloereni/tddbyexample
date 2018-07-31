@@ -12,4 +12,9 @@ class Dollar
   def amount
     @amount
   end
+
+  def equals dollar
+    dollar.amount == @amount
+  end
+
 end

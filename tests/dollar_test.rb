@@ -6,6 +6,9 @@ class DollarTest < Test::Unit::TestCase
   # $5 + 10 CHF = $10 if CHF:USD is 2:1
   # $5 * 2 = $10 DONE
   # Money rounding
+  # Equals DONE
+  # Equal null
+  # HashCode
   def test_multiplication
     five = Dollar.new(5)
     product  = five.times(2)
@@ -13,7 +16,11 @@ class DollarTest < Test::Unit::TestCase
 
     product = five.times(3)
     assert_equal(15, product.amount)
+  end
 
+  def test_equality
+    assert_true(Dollar.new(5).equals(Dollar.new(5)))
+    assert_false(Dollar.new(5).equals(Dollar.new(6)))
   end
 
 end
