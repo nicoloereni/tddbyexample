@@ -20,25 +20,25 @@ class MoneyTest < Test::Unit::TestCase
   # Currency?
 
   def test_multiplication
-    five = Dollar.new(5)
+    five = Money.dollar(5)
 
-    assert_true(Dollar.new(10).equals(five.times(2)))
-    assert_true(Dollar.new(15).equals(five.times(3)))
+    assert_true(Money.dollar(10).equals(five.times(2)))
+    assert_true(Money.dollar(15).equals(five.times(3)))
   end
 
   def test_franc_multiplication
-    five = Franc.new(5)
+    five = Money.franc(5)
 
-    assert_true(Franc.new(10).equals(five.times(2)))
-    assert_true(Franc.new(15).equals(five.times(3)))
+    assert_true(Money.franc(10).equals(five.times(2)))
+    assert_true(Money.franc(15).equals(five.times(3)))
   end
 
   def test_equality
-    assert_true(Dollar.new(5).equals(Dollar.new(5)))
-    assert_true(Franc.new(5).equals(Franc.new(5)))
-    assert_false(Dollar.new(5).equals(Dollar.new(6)))
-    assert_false(Franc.new(5).equals(Franc.new(6)))
-    assert_false(Franc.new(5).equals(Dollar.new(5)))
+    assert_true(Money.dollar(5).equals(Money.dollar(5)))
+    assert_true(Money.franc(5).equals(Money.franc(5)))
+    assert_false(Money.dollar(5).equals(Money.dollar(6)))
+    assert_false(Money.franc(5).equals(Money.franc(6)))
+    assert_false(Money.franc(5).equals(Money.dollar(5)))
   end
 
 end
