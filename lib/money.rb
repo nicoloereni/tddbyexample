@@ -1,11 +1,13 @@
 class Money
 
-  def equals money
-    money.amount == @amount
+  def equals(money)
+    if money.is_a? self.class
+      money.amount == @amount
+    else
+      false
+    end
   end
 
   protected
-  def amount
-    @amount
-  end
+  attr_reader :amount
 end

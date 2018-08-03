@@ -2,17 +2,22 @@ require './lib/dollar.rb'
 require './lib/franc.rb'
 require 'test/unit'
 
-class DollarTest < Test::Unit::TestCase
+class MoneyTest < Test::Unit::TestCase
   # To do:
+  #
   # $5 + 10 CHF = $10 if CHF:USD is 2:1
-  # $5 * 2 = $10 DONE
+  # Common times
   # 5 CHF * 2 = 10 CHF
   # Money rounding
-  # Equals DONE
   # Equal null
   # HashCode
-  # Dollar/Franc duplication
-  # Common equals
+  #
+  # Dollar/Franc duplication DONE
+  # Common equals DONE
+  # Francs != Dollars DONE
+  # $5 * 2 = $10 DONE
+  # Equals DONE
+  # Currency?
 
   def test_multiplication
     five = Dollar.new(5)
@@ -30,7 +35,10 @@ class DollarTest < Test::Unit::TestCase
 
   def test_equality
     assert_true(Dollar.new(5).equals(Dollar.new(5)))
+    assert_true(Franc.new(5).equals(Franc.new(5)))
     assert_false(Dollar.new(5).equals(Dollar.new(6)))
+    assert_false(Franc.new(5).equals(Franc.new(6)))
+    assert_false(Franc.new(5).equals(Dollar.new(5)))
   end
 
 end
