@@ -6,10 +6,14 @@ class DollarTest < Test::Unit::TestCase
   # To do:
   # $5 + 10 CHF = $10 if CHF:USD is 2:1
   # $5 * 2 = $10 DONE
+  # 5 CHF * 2 = 10 CHF
   # Money rounding
   # Equals DONE
   # Equal null
   # HashCode
+  # Dollar/Franc duplication
+  # Common equals
+
   def test_multiplication
     five = Dollar.new(5)
 

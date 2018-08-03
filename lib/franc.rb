@@ -1,4 +1,4 @@
-class Franc
+class Franc < Money
   @amount
 
   def initialize(amount)
@@ -8,14 +8,4 @@ class Franc
   def times(times)
     Franc.new(@amount * times)
   end
-
-  def equals franc
-    franc.amount == @amount
-  end
-
-  protected
-  def amount
-    @amount
-  end
-
 end
