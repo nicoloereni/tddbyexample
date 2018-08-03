@@ -1,5 +1,4 @@
-require './lib/dollar.rb'
-require './lib/franc.rb'
+require './lib/money.rb'
 require 'test/unit'
 
 class MoneyTest < Test::Unit::TestCase
@@ -36,9 +35,16 @@ class MoneyTest < Test::Unit::TestCase
   def test_equality
     assert_true(Money.dollar(5).equals(Money.dollar(5)))
     assert_true(Money.franc(5).equals(Money.franc(5)))
+
     assert_false(Money.dollar(5).equals(Money.dollar(6)))
     assert_false(Money.franc(5).equals(Money.franc(6)))
+
     assert_false(Money.franc(5).equals(Money.dollar(5)))
+  end
+
+  def test_currency
+    assert_equal('USD', Money.dollar(1).currency)
+    assert_equal('CHF', Money.franc(1).currency)
   end
 
 end
