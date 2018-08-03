@@ -1,4 +1,5 @@
 require './lib/dollar.rb'
+require './lib/franc.rb'
 require 'test/unit'
 
 class DollarTest < Test::Unit::TestCase
@@ -14,6 +15,13 @@ class DollarTest < Test::Unit::TestCase
 
     assert_true(Dollar.new(10).equals(five.times(2)))
     assert_true(Dollar.new(15).equals(five.times(3)))
+  end
+
+  def test_franc_multiplication
+    five = Franc.new(5)
+
+    assert_true(Franc.new(10).equals(five.times(2)))
+    assert_true(Franc.new(15).equals(five.times(3)))
   end
 
   def test_equality
