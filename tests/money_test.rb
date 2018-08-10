@@ -6,45 +6,46 @@ class MoneyTest < Test::Unit::TestCase
   #
   # $5 + 10 CHF = $10 if CHF:USD is 2:1
   # Common times
-  # 5 CHF * 2 = 10 CHF
   # Money rounding
   # Equal null
   # HashCode
+  # Delete test Franc multiplication
   #
   # Dollar/Franc duplication DONE
   # Common equals DONE
   # Francs != Dollars DONE
+  # 5 CHF * 2 = 10 CHF DONE
   # $5 * 2 = $10 DONE
   # Equals DONE
-  # Currency?
+  # Currency? DONE
 
   def test_multiplication
-    five = Money.dollar(5)
+    five = Money.new(5, 'USD')
 
-    assert_true(Money.dollar(10).equals(five.times(2)))
-    assert_true(Money.dollar(15).equals(five.times(3)))
+    assert_true(Money.new(10, 'USD').equals(five.times(2)))
+    assert_true(Money.new(15, 'USD').equals(five.times(3)))
   end
 
   def test_franc_multiplication
-    five = Money.franc(5)
+    five = Money.new(5, 'CHF')
 
-    assert_true(Money.franc(10).equals(five.times(2)))
-    assert_true(Money.franc(15).equals(five.times(3)))
+    assert_true(Money.new(10, 'CHF').equals(five.times(2)))
+    assert_true(Money.new(15, 'CHF').equals(five.times(3)))
   end
 
   def test_equality
-    assert_true(Money.dollar(5).equals(Money.dollar(5)))
-    assert_true(Money.franc(5).equals(Money.franc(5)))
+    assert_true(Money.new(5, 'USD').equals(Money.new(5, 'USD')))
+    assert_true(Money.new(5, 'CHF').equals(Money.new(5, 'CHF')))
 
-    assert_false(Money.dollar(5).equals(Money.dollar(6)))
-    assert_false(Money.franc(5).equals(Money.franc(6)))
+    assert_false(Money.new(5, 'USD').equals(Money.new(6, 'USD')))
+    assert_false(Money.new(5, 'CHF').equals(Money.new(6, 'CHF')))
 
-    assert_false(Money.franc(5).equals(Money.dollar(5)))
+    assert_false(Money.new(5, 'CHF').equals(Money.new(5, 'USD')))
   end
 
   def test_currency
-    assert_equal('USD', Money.dollar(1).currency)
-    assert_equal('CHF', Money.franc(1).currency)
+    assert_equal('USD', Money.new(1, 'USD').currency)
+    assert_equal('CHF', Money.new(1, 'CHF').currency)
   end
 
 end
