@@ -16,6 +16,7 @@ class MoneyTest < Test::Unit::TestCase
   # Francs != Dollars DONE
   # 5 CHF * 2 = 10 CHF DONE
   # $5 * 2 = $10 DONE
+  # $5 + 5$ = $10 DONE
   # Equals DONE
   # Currency? DONE
 
@@ -24,6 +25,11 @@ class MoneyTest < Test::Unit::TestCase
 
     assert_true(Money.new(10, 'USD').equals(five.times(2)))
     assert_true(Money.new(15, 'USD').equals(five.times(3)))
+  end
+
+  def test_same_currency_addition
+    sum = Money.new(5, 'USD').plus(Money.new(5, 'USD'))
+    assert_true(sum.equals(Money.new(10, 'USD')))
   end
 
   def test_equality
