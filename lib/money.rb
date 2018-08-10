@@ -23,9 +23,9 @@ class Money
 
   def times(times)
     if currency == 'USD'
-      Money.dollar(@amount * times)
+      Money.dollar(amount * times)
     else
-      Money.franc(@amount * times)
+      Money.franc(amount * times)
     end
   end
 
