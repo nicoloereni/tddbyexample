@@ -1,4 +1,6 @@
-class Money
+require 'expression.rb'
+
+class Money < Expression
 
   def initialize(amount, currency)
     @amount = amount
@@ -18,7 +20,7 @@ class Money
   end
 
   def plus(money)
-    Money.create_money(money.amount + amount, money.currency)
+    Money.create_money(money.amount + amount, currency)
   end
 
   attr_reader :currency

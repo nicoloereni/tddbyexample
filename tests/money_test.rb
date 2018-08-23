@@ -1,4 +1,5 @@
 require './lib/money.rb'
+require './lib/bank.rb'
 require 'test/unit'
 
 class MoneyTest < Test::Unit::TestCase
@@ -9,16 +10,6 @@ class MoneyTest < Test::Unit::TestCase
   # Money rounding
   # Equal null
   # HashCode
-  # Delete test Franc multiplication
-  #
-  # Dollar/Franc duplication DONE
-  # Common equals DONE
-  # Francs != Dollars DONE
-  # 5 CHF * 2 = 10 CHF DONE
-  # $5 * 2 = $10 DONE
-  # $5 + 5$ = $10 DONE
-  # Equals DONE
-  # Currency? DONE
 
   def test_multiplication
     five = Money.new(5, 'USD')
@@ -27,9 +18,10 @@ class MoneyTest < Test::Unit::TestCase
     assert_true(Money.new(15, 'USD').equals(five.times(3)))
   end
 
-  def test_same_currency_addition
-    sum = Money.new(5, 'USD').plus(Money.new(5, 'USD'))
-    assert_true(sum.equals(Money.new(10, 'USD')))
+  def test_different_currency_addition
+    sum = Sum.new(Money.new(5, 'USD'), Money.new(5, 'CHF'))
+    reduced = Bank.new.reduce(sum, 'USD')
+    assert_true(reduced.equals(Money.new(10, 'USD')))
   end
 
   def test_equality
