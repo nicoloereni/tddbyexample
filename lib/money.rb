@@ -1,6 +1,6 @@
-require 'expression.rb'
+require 'sum.rb'
 
-class Money < Expression
+class Money
 
   def initialize(amount, currency)
     @amount = amount
@@ -20,7 +20,20 @@ class Money < Expression
   end
 
   def plus(money)
-    Money.create_money(money.amount + amount, currency)
+    # Money.create_money(money.amount + amount, currency)
+    Sum.new(money, self)
+  end
+
+  def self.dollar(amount)
+    Money.new(amount, 'USD')
+  end
+
+  def self.franc(amount)
+    Money.new(amount, 'CHF')
+  end
+
+  def reduce(currency)
+    self
   end
 
   attr_reader :currency

@@ -18,11 +18,21 @@ class MoneyTest < Test::Unit::TestCase
     assert_true(Money.new(15, 'USD').equals(five.times(3)))
   end
 
-  def test_different_currency_addition
-    sum = Sum.new(Money.new(5, 'USD'), Money.new(5, 'CHF'))
+  def test_reduce_sum
+    sum = Sum.new(Money.new(5, 'USD'), Money.new(5, 'USD'))
     reduced = Bank.new.reduce(sum, 'USD')
     assert_true(reduced.equals(Money.new(10, 'USD')))
   end
+
+  def test_bank_reduce_money
+    Bank.new.reduce(Money.dollar(1), 'USD')
+  end
+
+  # def test_sum_different_currency
+  #   sum = Money.new(5, 'USD').plus(Money.new(10, 'CHF'))
+  #   reduced = sum.reduce('USD')
+  #   assert_true(reduced.equals(Money.new(10, 'USD')))
+  # end
 
   def test_equality
     assert_true(Money.new(5, 'USD').equals(Money.new(5, 'USD')))
