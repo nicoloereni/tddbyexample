@@ -20,7 +20,6 @@ class Money
   end
 
   def plus(money)
-    # Money.create_money(money.amount + amount, currency)
     Sum.new(money, self)
   end
 
@@ -32,8 +31,8 @@ class Money
     Money.new(amount, 'CHF')
   end
 
-  def reduce(currency)
-    self
+  def reduce(bank, to)
+    Money.new(amount / bank.rate('CHF', to), to)
   end
 
   attr_reader :currency

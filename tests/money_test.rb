@@ -28,11 +28,21 @@ class MoneyTest < Test::Unit::TestCase
     Bank.new.reduce(Money.dollar(1), 'USD')
   end
 
-  # def test_sum_different_currency
-  #   sum = Money.new(5, 'USD').plus(Money.new(10, 'CHF'))
-  #   reduced = sum.reduce('USD')
-  #   assert_true(reduced.equals(Money.new(10, 'USD')))
-  # end
+  def test_sum_different_currency
+    sum = Money.new(5, 'USD').plus(Money.new(10, 'CHF'))
+    bank = Bank.new
+
+    bank.add_rate('CHF', 'USD', 2)
+    reduced = bank.reduce(sum, 'USD')
+    
+    assert_true(reduced.equals(Money.new(10, 'USD')))
+  end
+
+  def test_reduce_money_different_currency
+    bank = Bank.new
+    bank.add_rate('CHF', 'USD', 2)
+    assert_true(Money.dollar(5).equals(bank.reduce(Money.franc(10), 'USD')))
+  end
 
   def test_equality
     assert_true(Money.new(5, 'USD').equals(Money.new(5, 'USD')))
