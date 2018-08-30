@@ -11,13 +11,6 @@ class MoneyTest < Test::Unit::TestCase
   # Equal null
   # HashCode
 
-  def test_multiplication
-    five = Money.new(5, 'USD')
-
-    assert_true(Money.new(10, 'USD').equals(five.times(2)))
-    assert_true(Money.new(15, 'USD').equals(five.times(3)))
-  end
-
   def test_reduce_sum
     sum = Sum.new(Money.new(5, 'USD'), Money.new(5, 'USD'))
     reduced = Bank.new.reduce(sum, 'USD')
@@ -34,7 +27,6 @@ class MoneyTest < Test::Unit::TestCase
 
     bank.add_rate('CHF', 'USD', 2)
     reduced = bank.reduce(sum, 'USD')
-    
     assert_true(reduced.equals(Money.new(10, 'USD')))
   end
 
@@ -42,6 +34,26 @@ class MoneyTest < Test::Unit::TestCase
     bank = Bank.new
     bank.add_rate('CHF', 'USD', 2)
     assert_true(Money.dollar(5).equals(bank.reduce(Money.franc(10), 'USD')))
+  end
+
+  def test_sum_plus_money
+    five_bucks = Money.dollar(5)
+    ten_francs = Money.franc(10)
+    bank = Bank.new
+    bank.add_rate('CHF', 'USD', 2)
+    sum = Sum.new(five_bucks, ten_francs).plus(five_bucks)
+    result = bank.reduce(sum, 'USD')
+    assert_true(Money.dollar(15).equals(result))
+  end
+
+  def test_sum_times
+    five_bucks = Money.dollar(5)
+    ten_francs = Money.franc(10)
+    bank = Bank.new
+    bank.add_rate('CHF', 'USD', 2)
+    sum = Sum.new(five_bucks, ten_francs).times(2)
+    result = bank.reduce(sum, 'USD')
+    assert_true(Money.dollar(20).equals(result))
   end
 
   def test_equality

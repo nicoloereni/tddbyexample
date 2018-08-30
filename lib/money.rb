@@ -32,7 +32,7 @@ class Money
   end
 
   def reduce(bank, to)
-    Money.new(amount / bank.rate('CHF', to), to)
+    Money.new(amount / bank.rate(currency, to), to)
   end
 
   attr_reader :currency
